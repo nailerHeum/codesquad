@@ -8,11 +8,10 @@ bool nand(bool paramA, bool paramB) {
 }
 
 int main() {
-  bool a = true;
-  bool b = true;
-  bool nandOut = true;
-  nandOut = nand(a, b);
-  printf("%d\n", nandOut);
+  printf("true NAND true => %d\n", nand(true, true));
+  printf("true NAND false => %d\n", nand(true, false));
+  printf("false NAND true => %d\n", nand(false, true));
+  printf("false NAND false => %d\n", nand(false, false));
 
   return 0;
 }

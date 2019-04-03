@@ -10,13 +10,9 @@ bool nor(bool paramA, bool paramB) {
 }
 
 int main() {
-  bool a = true;
-  bool b = true;
-  bool norOut = true;
-
-  norOut = nor(a,b);
-
-  printf("%d \n", norOut);
-
+  printf("true NOR true => %d\n", nor(true, true));
+  printf("true NOR false => %d\n", nor(true, false));
+  printf("false NOR true => %d\n", nor(false, true));
+  printf("false NOR false => %d\n", nor(false, false));
   return 0;
 }
