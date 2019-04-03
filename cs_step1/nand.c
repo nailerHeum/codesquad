@@ -12,7 +12,7 @@ int main() {
   bool b = true;
   bool nandOut = true;
   nandOut = nand(a, b);
-  printf("%d", nandOut);
+  printf("%d\n", nandOut);
 
   return 0;
 }
