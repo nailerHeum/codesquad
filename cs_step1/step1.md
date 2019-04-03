@@ -223,6 +223,19 @@ func fulladder(_ bitA:Bool, _ bitB:Bool, _ carry:Bool) -> [Bool] {
 }
 ```
 
+C언어의 논리 연산자
+
+| Operators | Meaning of operators         |
+| --------- | ---------------------------- |
+| `&`       | Bitwise AND // CARRY 에 사용 |
+| `|`       | Bitwise OR                   |
+| `^`       | Bitwise XOR // SUM 에 사용   |
+| `~`       | Bitwise complement           |
+| `<<`      | Shift left                   |
+| `>>`      | Shift right                  |
+
+
+
 ### 미션2
 
 앞에서 만든 이진 덧셈기를 이용해서 BOOL 타입으로 동작하는 8비트 덧셈기를 구현한다.
