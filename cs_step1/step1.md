@@ -1,4 +1,6 @@
-## Nand Gate
+## CS Step 1
+
+### Nand Gate
 
 ----
 
@@ -12,7 +14,7 @@
 
 아래 그림을 살펴보자. 회로에서 나오는 출력이 연결되어 있어서 OR 게이트처럼 비슷하게 보인다. 이 회로는 두 스위치가 모두 닫혀있을 때만 전구에 불이 꺼집니다. 그 외에 나머지 경우에는 불이 켜진다.
 
-![nand](http://public.codesquad.kr/jk/cs23/step1-nand.png)
+![nand](/Users/csheum/Desktop/codesquad2/cs_step1/step1/step1-nand.png)
 
 이 논리 게이트는 AND 게이트의 동작과 완전히 반대로 동작한다. 그래서 이 논리 게이트의 이름을 NOT AND (줄여서 NAND) 게이트라고 한다.
 
@@ -29,7 +31,7 @@ NAND 는 AND 게이트 동작에 NOT(인버터)를 붙인 것과 동일하다. N
 - 함수의 매개변수는 BOOL 타입을 갖는 두 개를 갖고, 결과값은 BOOL 타입으로 리턴합니다.
 - paramA 와 paramB 가 모두 true 일 때만 결과가 false 가 되고, 나머지 다른 경우는 모두 true가 됩니다.
 
-> 함수 시그니처 예시
+**nand**
 
 ```c
 bool nand(bool paramA, bool paramB) {
@@ -42,6 +44,8 @@ bool nand(bool paramA, bool paramB) {
 ```
 
 말 그대로 NOT AND 게이트이므로 연언에 대해서 역을 취해주면 된다.
+
+**NAND의 진리표**
 
 | answer | paramA | paramB |
 | ------ | ------ | ------ |
@@ -62,7 +66,7 @@ bool nand(bool paramA, bool paramB) {
 
 아래 그림을 살펴보자. 첫 번째 릴레이의 출력은 두 번째 릴레이에 전력을 공급하는 형태가 된다. 결국 두 입력 모두가 꺼져 있어서 전구에는 불이 들어오게 된다.
 
-![nor](http://public.codesquad.kr/jk/cs23/step1-nor.png)
+![nor](/Users/csheum/Desktop/codesquad2/cs_step1/step1/step1-nor.png)
 
 이 논리 게이트는 OR 게이트의 동작과 완전히 반대로 동작한다. 그래서 이 논리 게이트의 이름을 NOT OR (줄여서 NOR) 게이트라고 한다.
 
@@ -79,7 +83,7 @@ NOR 는 OR 게이트 동작에 NOT(인버터)를 붙인 것과 동일하다. NOR
 - 함수의 매개변수는 BOOL 타입을 갖는 두 개를 갖고, 결과값은 BOOL 타입으로 리턴합니다.
 - paramA 와 paramB 가 모두 false 일 때만 결과가 true 가 되고, 나머지 다른 경우는 모두 false가 됩니다.
 
-> 함수 시그니처 예시
+**nor**
 
 ```cpp
 bool nor(bool paramA, bool paramB) {
@@ -93,6 +97,8 @@ bool nor(bool paramA, bool paramB) {
 
 NOR GATE 는 NOT OR GATE이다. 따라서 OR 연산자에 NOT을 붙여주면 된다.
 
+**NOR의 진리표**
+
 | answer | paramA | paramB |
 | ------ | ------ | ------ |
 | 0      | 1      | 1      |
@@ -102,15 +108,19 @@ NOR GATE 는 NOT OR GATE이다. 따라서 OR 연산자에 NOT을 붙여주면 �
 
 
 
-## 이진 덧셈기(Binary Adder)
+
+
+### 이진 덧셈기(Binary Adder)
 
 
 
-### 학습 목표
+**학습 목표**
 
 디지털 논리회로 기본 부품을 응용해서 만들 수 있는 부가적인 회로를 연결해서, 이진 덧셈기를 만든다. 우선 1비트를 더하는 half-adder를 만들고, 8비트를 처리하는 adder를 만든다.
 
-### 배경 지식
+
+
+**배경 지식**
 
 A,B 두 개 비트를 이진 덧셈기로 더하는 과정을 생각해보자. 다음과 같이 2비트 값으로 표현해볼 수 있다.
 
@@ -121,7 +131,7 @@ A,B 두 개 비트를 이진 덧셈기로 더하는 과정을 생각해보자. �
 
 #### 1) 반가산기 half-adder
 
-![nor](http://public.codesquad.kr/jk/cs23/step1-halfadder.png)
+![nor](/Users/csheum/Desktop/codesquad2/cs_step1/step1/step1-halfadder.png)
 
 이처럼 한 비트의 두 이진수를 더하면 두 비트가 되며, 각각 합(sum)과 자리올림(carry) 비트라고 한다. 두 개의 표로 구분해본다.
 
@@ -141,11 +151,11 @@ A,B 두 개 비트를 이진 덧셈기로 더하는 과정을 생각해보자. �
 
 세 개의 이진수를 더하기 위해서는 두 개의 반가산기와 OR 게이트를 아래 그림처럼 연결하면 된다.
 
-![nor](http://public.codesquad.kr/jk/cs23/step1-fulladder.png)
+![nor](/Users/csheum/Desktop/codesquad2/cs_step1/step1/step1-fulladder.png)
 
 위와 같은 복잡한 그림 대신에 사각형과 직선으로, 아래처럼 표현하고 전가산기(full-adder)라고 부른다.
 
-![nor](http://public.codesquad.kr/jk/cs23/step1-fulladder-symbol.png)
+![nor](/Users/csheum/Desktop/codesquad2/cs_step1/step1/step1-fulladder-symbol.png)
 
 ### 미션1
 
@@ -180,50 +190,9 @@ carry  = 1
 결과 = [1, 0]
 ```
 
-#### 함수 시그니처 예시
 
-> 자바
 
-```java
-class Adder {
-    public boolean[] halfadder(boolean bitA, boolean bitB) {
-        boolean[] answer = {};
-        return answer;
-    }
-    public boolean[] fulladder(boolean bitA, boolean bitB, boolean carry) {
-        boolean[] answer = {};
-        return answer;
-    }
-}
-```
-
-> 자바스크립트
-
-```javascript
-function halfadder(bitA, bitB) {
-    var answer = [];
-    return answer;
-}
-
-function fulladder(bitA, bitB, carry) {
-    var answer = [];
-    return answer;
-}
-```
-
-> 스위프트
-
-```swift
-func halfadder(_ bitA:Bool, _ bitB:Bool) -> [Bool] {
-    return []
-}
-
-func fulladder(_ bitA:Bool, _ bitB:Bool, _ carry:Bool) -> [Bool] {
-    return []
-}
-```
-
-C언어의 논리 연산자
+**C언어의 논리 연산자**
 
 | Operators | Meaning of operators         |
 | --------- | ---------------------------- |
@@ -233,6 +202,40 @@ C언어의 논리 연산자
 | `~`       | Bitwise complement           |
 | `<<`      | Shift left                   |
 | `>>`      | Shift right                  |
+
+**halfadder**
+
+```c
+bool* halfadder(bool bitA, bool bitB) {
+  bool* result = (bool*) malloc(sizeof(bool)*2);
+  bool sum = bitA ^ bitB;
+  bool carry = bitA & bitB;
+  
+  *result = sum;
+  *(result+1) = carry;
+
+  return result;
+}
+```
+
+
+
+**fulladder**
+
+```c
+bool* fulladder(bool bitA, bool bitB, bool carry) {
+  bool* result = (bool*) malloc(sizeof(bool)*2);
+  bool tmpCarry = 0;
+  
+  result = halfadder(bitA, bitB);
+  tmpCarry = result[1];
+
+  result = halfadder(result[0], carry);
+  result[1] = tmpCarry | result[1];
+
+  return result; 
+}
+```
 
 
 
@@ -260,39 +263,164 @@ byteB  = [ 1, 1, 0, 1, 1, 0, 0, 1 ]
    결과 = [ 0, 1, 1, 1, 0, 1, 1, 1, 0 ]
 ```
 
-#### 함수 시그니처 예시
 
-> Java
 
-```java
-class Adder {
-    public boolean[] byteadder(boolean[] byteA, boolean[] byteB) {
-        boolean[] answer = {};
-        return answer;
-    }
+**byteadder** 
+
+```c
+bool* byteadder(bool byteA[], bool byteB[], size_t alen, size_t blen) {
+  int bigLen = alen>blen ? alen : blen;
+  int smaLen = alen>blen ? blen : alen;
+  bool* tmp = (bool*) malloc(sizeof(bool)*2);
+  bool* result = (bool*) malloc(sizeof(bool)*bigLen);
+
+  result = halfadder(byteA[0], byteB[0]);
+  printf("\n test1: %d %d\n", *(result+1), *result);
+  for(int i = 1;i < bigLen;i++) {
+    printf("byteA: %d, byteB: %d, carry: %d\n", byteA[i], byteB[i], result[i]);
+    tmp = fulladder(byteA[i], byteB[i], result[i]);
+    result[i] = *tmp;
+    result[i+1] = *(tmp+1);
+  } 
+  free(tmp);
+  return result;
 }
 ```
 
+
+
+**정리**
+
+- 4비트나 16비트도 같은 함수로 한꺼번에 처리 가능한가?
+  - 예 가능합니다.
+- byteA와 byteB 배열의 크기가 다르면 어떻게 처리 가능할까?
+  - 다르게 처리했습니다.
+
+
+
+
+
+### 진법변환기
+
+
+
+**학습목표**
+
+BOOL 타입으로 만든 8비트 덧셈기에 값을 전달하고, 전달받은 값을 표시하기 위해서 값을 변환하는 함수를 구현한다.
+
+
+
+**배경 지식**
+
+- 정수형 10진수 값을 2진수로 표현하는 방법을 학습한다.
+- 2진수를 16진수로 변경하는 방법을 학습한다.
+- 16진수를 10진수로 변경하는 방법을 학습한다.
+- 미리 만들어진 수학 함수가 아니라 4칙연산(+, -, *, /) 연산만으로 계산하는 방식으로 학습한다.
+
+### 미션1
+
+0부터 256 미만의 `Int` 정수형 10진수를 `[Bool]` 2진수 배열로 변환하는 dex2bin 함수를 구현한다.
+
+- 사칙연산만으로 변환하는 방식을 구현한다.
+- 만들어지는 비트 순서는 낮은 자리가 배열의 앞쪽에 오도록 표현한다. 배열의 순서대로 보면 이진수가 뒤집혀 있는 것처럼 보인다고 가정한다.
+
+```
+이진수 1100 = [ 0, 0, 1, 1 ]` `이진수 0101 = [ 1, 0, 1, 0 ]
+```
+
+- 예상 결과
+
+```
+입력  = 10
+결과 = [0, 1, 0, 1]
+
+입력  = 173
+결과 = [1,0,1,1,0,1,0,1]
+```
+
+> 함수 시그니처 예시
+>
+> 자바
+>
+> ```java
+> class Convertor {
+>     public boolean[] dec2bin(int decimal) {
+>         boolean[] answer = {};
+>         return answer;
+>     }
+> }
+> ```
+>
 > 자바스크립트
-
-```javascript
-function byteadder(byteA, byteB) {
-    var answer = [];
-    return answer;
-}
-```
-
+>
+> ```javascript
+> function dec2bin(decimal) {
+>     var answer = [];
+>     return answer;
+> }
+> ```
+>
 > 스위프트
+>
+> ```swift
+> func dec2bin(_ decimal:Int) -> [Bool] {
+>     return []
+> }
+> ```
 
-```swift
-func byteadder(_ byteA:[Bool], _ byteB:[Bool]) -> [Bool] {
-    return []
-}
+### 미션2
+
+`[Bool]` 2진수 배열을 `Int` 정수형 10진수로 변환하는 bin2dec 함수를 구현한다.
+
+- 사칙연산만으로 변환하는 방식을 구현한다.
+- 입력하는 비트 순서는 낮은 자리가 배열의 앞쪽에 오도록 표현한다. 배열의 순서대로 보면 이진수가 뒤집혀 있는 것처럼 보인다고 가정한다.
+
 ```
+이진수 1100 = [ 0, 0, 1, 1 ]` `이진수 0101 = [ 1, 0, 1, 0 ]
+```
+
+- 예상 결과
+
+```
+입력 = [0, 1, 1, 1]
+결과  = 14
+
+입력  = [1,1,1,1,0,1,0,1]
+결과 = 175
+```
+
+> 함수 시그니처 예시
+>
+> 자바
+>
+> ```java
+> class Convertor {
+>     public int bin2dec(boolean[] bin) {
+>         int answer = 0;
+>         return answer;
+>     }
+> }
+> ```
+>
+> 자바스크립트
+>
+> ```javascript
+> function bin2dec(bin) {
+>     var answer = 0;
+>     return answer;
+> }
+> ```
+>
+> 스위프트
+>
+> ```swift
+> func bin2dec(_ bin:[Bool]) -> Int {
+>     return 0
+> }
+> ```
 
 ### 정리
 
-- 4비트나 16비트도 같은 함수로 한꺼번에 처리 가능한가?
-- byteA와 byteB 배열의 크기가 다르면 어떻게 처리 가능할까?
-
-​	
+- 앞서 만들었던 이진 덧셈기에 입력과 출력에 연결해서 10진수 덧셈이 동작하는지 여부를 확인한다.
+- 같은 방식으로 2진수를 16진법으로 변환하는 함수를 만들어본다.
+- 같은 방식으로 16진수를 2진법으로 변환하는 함수를 만들어본다.
