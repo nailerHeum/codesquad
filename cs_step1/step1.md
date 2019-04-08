@@ -2,11 +2,7 @@
 
 ### Nand Gate
 
-----
 
-#### 학습 목표
-
-디지털 논리회로 기본 부품을 응용해서 만들 수 있는 부가적인 회로에 대해 학습한다.
 
 #### 배경 지식
 
@@ -338,35 +334,32 @@ BOOL 타입으로 만든 8비트 덧셈기에 값을 전달하고, 전달받은 
 결과 = [1,0,1,1,0,1,0,1]
 ```
 
-> 함수 시그니처 예시
->
-> 자바
->
-> ```java
-> class Convertor {
->     public boolean[] dec2bin(int decimal) {
->         boolean[] answer = {};
->         return answer;
->     }
-> }
-> ```
->
-> 자바스크립트
->
-> ```javascript
-> function dec2bin(decimal) {
->     var answer = [];
->     return answer;
-> }
-> ```
->
-> 스위프트
->
-> ```swift
-> func dec2bin(_ decimal:Int) -> [Bool] {
->     return []
-> }
-> ```
+**dec2bin**
+
+```c
+#include <stdio.h>
+#include <stdbool.h>
+#include <stdlib.h>
+
+bool* dec2bin(int decimal){
+  bool* answer = (bool*) malloc(sizeof(bool)*9);
+  int tmp = 0;
+  int i =0;
+  while(1) {
+    tmp = decimal%2;
+    decimal = decimal / 2;
+    *(answer+i) = tmp;
+    if(decimal == 1 || decimal == 0){
+      *(answer+i+1) = decimal;
+      break;
+    }
+    i++;
+  }
+  return answer;
+}
+```
+
+
 
 ### 미션2
 
@@ -389,38 +382,125 @@ BOOL 타입으로 만든 8비트 덧셈기에 값을 전달하고, 전달받은 
 결과 = 175
 ```
 
-> 함수 시그니처 예시
->
-> 자바
->
-> ```java
-> class Convertor {
->     public int bin2dec(boolean[] bin) {
->         int answer = 0;
->         return answer;
->     }
-> }
-> ```
->
-> 자바스크립트
->
-> ```javascript
-> function bin2dec(bin) {
->     var answer = 0;
->     return answer;
-> }
-> ```
->
-> 스위프트
->
-> ```swift
-> func bin2dec(_ bin:[Bool]) -> Int {
->     return 0
-> }
-> ```
+
+
+**bin2dec**
+
+```c
+int bin2dec(bool biArr[], size_t biLen){
+  int answer = 0;
+  int i = 1;
+  int j = 1;
+  while(1){
+    answer = biArr[i-1]*j +answer;
+    j = j*2;
+    if(i == biLen)
+      break;
+    i++;
+  }
+  return answer;
+}
+```
+
+
 
 ### 정리
 
 - 앞서 만들었던 이진 덧셈기에 입력과 출력에 연결해서 10진수 덧셈이 동작하는지 여부를 확인한다.
+
+**decAdder.c/main**
+
+```c
+int main() {
+  int aDec = 0;
+  int bDec = 0;
+  int ansLength = 0;
+  int decAnswer = 0;
+  bool* biAnswer = (bool*) malloc(sizeof(bool)*64);
+  printf("10진수 A를 입력해주세요 : ");
+  scanf("%d", &aDec);
+  printf("10진수 B를 입력해주세요 : ");
+  scanf("%d", &bDec);
+  
+  bool* a = dec2bin(aDec);
+  bool* b = dec2bin(bDec);
+  biAnswer = byteadder(a, b, sizeof(a)/sizeof(*a), sizeof(b)/sizeof(*b));
+  ansLength = sizeof(biAnswer);
+  for(int i = 0; i<ansLength; i++){
+    printf("%d ", biAnswer[ansLength-i-1]);
+  }
+  printf("\n");
+  
+  decAnswer = bin2dec(biAnswer, ansLength);
+  printf("%d + %d = %d\n", aDec, bDec, decAnswer);
+  free(biAnswer);
+  
+}
+```
+
+
+
 - 같은 방식으로 2진수를 16진법으로 변환하는 함수를 만들어본다.
+
+**`int* bin2hex(bool biArr[], size_t biLen)`**
+
+```c
+int* bin2hex(bool biArr[], size_t biLen){
+  int* answer = (int*) malloc(sizeof(int)*biLen/4);
+  int i = 1;
+  int j = 1;
+  int hexDigit = 0;
+  int tmpAns = 0;
+  bool outLoop = false;
+  
+  while(1) {
+    for(int k = 0;k < 4; k++) {
+      tmpAns = biArr[i-1]*j + tmpAns;
+      j = j*2;
+      i++;
+      if(i > biLen){
+        outLoop = true;
+        break;
+      }
+    }
+    *(answer + hexDigit) = tmpAns;
+    hexDigit++;
+    j = 1;
+    tmpAns = 0;
+    
+    if (outLoop == true)
+      break;
+  }
+  
+  return answer;
+}
+```
+
+
+
 - 같은 방식으로 16진수를 2진법으로 변환하는 함수를 만들어본다.
+
+**`int* hex2bin(int hexArr[], size_t hexLen)`**
+
+```c
+bool* hex2bin(int hexArr[], size_t hexLen) {
+  bool* answer = (bool*) malloc(sizeof(bool)*9);
+  int hexDigit = 0;
+  int ansIndex = 0;
+  for(int i = 0; i< hexLen; i++) {
+    hexDigit = hexArr[i];
+    for(int j = 0; j< 4; j++) {
+      if(hexDigit == 0 || hexDigit == 1) {
+        *(answer + ansIndex) = hexDigit;
+        ansIndex++;
+        break;
+      }
+       *(answer + ansIndex) = hexDigit%2;
+      hexDigit = hexDigit/2;
+      ansIndex++;
+    }
+  }
+  return answer;
+}
+```
+
