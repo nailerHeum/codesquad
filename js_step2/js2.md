@@ -637,7 +637,29 @@ IIFE의 목적 및 장점
 
   중요한 점은 sorting이 완료된 list가 필요하단 것. 중간의 값을 선택하여, 크고작음을 비교하는 방식으로 이뤄진다. 검색이 반복될 때마다 목표값을 찾을 확률은 두 배가 되어 속도가 빠르다.
 
+  **binarySearch.py**
 
+  ```python
+  arr = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+  
+  def binarySearch(array, value, low, high):
+      if low > high:
+          return False
+      mid = (low+high) // 2
+      print(len(arr))
+      if mid == len(arr):
+          return False
+      if array[mid] > value:
+          return binarySearch(array, value, low, mid-1)
+      elif array[mid] < value:
+          return binarySearch(array, value, mid+1, high)
+      else:
+          return mid
+          
+  binarySearch(arr, 11, 0, 9)
+  ```
+
+  
 
 
 
