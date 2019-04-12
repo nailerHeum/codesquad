@@ -309,6 +309,123 @@ console.log(myReduce([[0, 1], [2, 3], [4, 5]], ( accumulator, currentValue ) => 
 
 
 
+### 추가 내용
+
+
+
+**JSON(JavaScript Object Notation)**
+
+json이란?
+
+- a lightweigth data-interchange format
+
+아래 두가지의 구조가 있다.
+
+- **A collection of name/value pairs.** 
+  - 다양한 언어들에서 JSON은  *object*, record, struct, dictionary, hash table, keyed list, associative array 등으로 인식된다.
+- **An ordered list of values.** 
+  - 대부분의 언어에서 *array*, vector, list, sequence로 인식된다.
+
+json.org에서 직관적으로 json의 사용방식을 파악할 수 있는 그림들을 제공한다.
+
+![img](js3/object.gif)
+
+![img](js3/array.gif)
+
+![img](js3/value.gif)
+
+string에 대해서 양 옆에 쌍따옴표가 존재해야한다.
+
+![img](js3/string.gif)
+
+**JSON.stringify()**
+
+이 method를 통해 javascript의 값이나 객체를 JSON 문자열로 반환할 수 있다.
+
+key에 쌍따옴표가 붙어있어도, 떼어져있어도 똑같이 반환되는 것이다.
+
+
+
+### Set & Map
+
+**Map**
+
+값들을 mapping하기 위한 data structure
+
+저장한 순서대로 각 요소들을 반복적으로 접근할 수 있도록 한다.
+
+
+
+**object와 map의 차이**
+
+- Object의 키는 String이며, Map의 키는 모든 값을 가질 수 있다.
+
+- Object는 크기를 수동으로 추적해야하지만, Map은 크기를 쉽게 알 수 있다.
+
+- Map은 삽입된 순서대로 반복한다.
+
+  
+
+  **둘중에 뭘 쓸까??**
+
+- 실행시까지 키를 알 수 없고, 모든 key가 동일한 datatype이고, 모든 value들이 동일한 datatype일 경우 object 대신 map을 사용해라
+
+- 각 개별 요소에 대해 적용해야 하는 Logic이 있다? => object 사용
+
+
+
+**Set**
+
+집합이다! 저장된 요소들을 반복처리할수있다.(iterable)
+
+중복된 값을 허용하지 않기 때문에 set 안에 있는 값은 set에서 unique하다. 
+
+배열과 set은 서로 호환이 용이하다. set안에 배열을 넣으면 중복된 요소들이 삭제되면서 set으로 들어온다.
+
+
+
+**배열과 set의 비교**
+
+- set은 요소의 값으로 해당요소를 삭제할 수 있다.
+- set은 값의 유일성을 보장하기 때문에 요소의 중복성을 확인하지 않아도 된다.
+
+
+
+### HOF(Higher-Order Function)
+
+고차함수란?
+
+- 하나 이상의 함수를 인자로 받는다
+- 함수를 결과로 반환한다.
+
+이 둘 중 하나만 만족해도 고차함수!
+
+
+
+**Abstracting Patterns of Control** : 제어 패턴 추상화
+
+계산의 세부사항을 인자로 넘기는 함수안에 캡슐화해서 추상적으로 제공할 수 있다
+
+쉽게 말해서 다양한 변경이 예상되는 로직을 특정 함수안에 넣으려면
+
+```js
+function repeat(n, fn) { 
+  for (let i = 0; i < n; i++) { 
+    fn(i); 
+  } 
+} 
+
+const list = []; 
+repeat(10000, (i) => {list.push(i)});
+
+```
+
+이런 식으로 함수를 인자로 넣어주면 원하는 방식대로 반복문을 수행할 수 있는 코드로 변하고, 다른 함수를 인자로 넣어주면 다른 기능도 수행할수 있게 되는 것이다.
+
+비슷하게 특정 함수를 return해줄 수 있다.
+
+필요에 따라서 적절한 함수를 return해줄 수 있다.
+
 
 
 
@@ -316,3 +433,9 @@ console.log(myReduce([[0, 1], [2, 3], [4, 5]], ( accumulator, currentValue ) => 
 **참고 문서**
 
 [reduce에 대하여](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce)
+
+[json에 대하여](http://json.org/)
+
+[map 관련 출처](https://developer.mozilla.org/ko/docs/Web/JavaScript/Guide/Keyed_collections)
+
+[고차함수 관련 출처](https://dev-momo.tistory.com/entry/HigherOrder-Function-%EC%9D%B4%EB%9E%80-%EB%AC%B4%EC%97%87%EC%9D%B8%EA%B0%80)
