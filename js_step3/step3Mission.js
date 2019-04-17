@@ -123,21 +123,7 @@ const dataArr = [{
 	}]
 }]
 
-const getSkUsers = (userData) => {
-  let skUsers = []
-  userData.forEach(v => {
-    if(v.childnode.length !==0){
-      skUsers = skUsers.concat(getSkUsers(v.childnode))
-    }
-    if(v.type === "sk"){
-      skUsers.push(v.name)
-    }
-  })
-  return skUsers
-}
 
-let skUsers = getSkUsers(dataArr)
-console.log(skUsers)
 
 // 3. reduce 구현하기!!!
 
@@ -159,3 +145,42 @@ console.log(myReduce([[0, 1], [2, 3], [4, 5]], ( accumulator, currentValue ) => 
 
 
 
+const getSkUsers = (userData) => {
+  let skUsers = []
+  // userData.forEach(v => {
+  //   if(v.childnode.length !==0){
+  //     skUsers = skUsers.concat(getSkUsers(v.childnode))
+  //   }
+  //   if(v.type === "sk"){
+  //     skUsers.push(v.name)
+  //   }
+	// })
+	skUsers = myReduce(userData, (users, user) => {
+		if(user.childnode.length !==0){
+			users = users.concat(getSkUsers(user.childnode))
+		}
+		if(user.type==="sk"){
+			users.push(user.name)
+		}
+		return users
+	}, [])
+  return skUsers
+}
+
+let skUsers = getSkUsers(dataArr)
+console.log(skUsers)
+
+mapArr = [1, 2, 3, 4, 5, 6]
+
+const myMap = (myArr, callback) => {
+	let resultArr = []
+
+	for(element of myArr){
+		resultArr.push(callback(element))		
+	}
+	
+	return resultArr
+}
+
+var result = myMap(mapArr, element => element*3)
+console.log(result)

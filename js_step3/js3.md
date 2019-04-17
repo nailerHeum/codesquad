@@ -309,6 +309,53 @@ console.log(myReduce([[0, 1], [2, 3], [4, 5]], ( accumulator, currentValue ) => 
 
 
 
+**내가 만든 reduce로 2번 풀어보기**
+
+```js
+const getSkUsers = (userData) => {
+  let skUsers = []
+	skUsers = myReduce(userData, (users, user) => {
+		if(user.childnode.length !==0){
+			users = users.concat(getSkUsers(user.childnode))
+		}
+		if(user.type==="sk"){
+			users.push(user.name)
+		}
+		return users
+	}, [])
+  return skUsers
+}
+```
+
+
+
+**myMap 구현하기**
+
+```js
+const myMap = (myArr, callback) => {
+	let resultArr = []
+
+	for(element of myArr){
+		resultArr.push(callback(element))		
+	}
+	
+	return resultArr
+}
+
+var result = myMap(mapArr, element => element*3)
+console.log(result)
+```
+
+
+
+설계할 때 낙서로 만족하지말고 남이 이해할 수 있도록 표현하는 노력을 하자
+
+
+
+
+
+
+
 ### 추가 내용
 
 
