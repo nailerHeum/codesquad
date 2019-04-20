@@ -88,3 +88,12 @@ DP가 아니라 메모제이션 기법을 사용하는거라 생각하자
 
 
 
+진행중
+
+- <https://www.hackerrank.com/challenges/2d-array/problem>
+
+- <https://programmers.co.kr/learn/courses/30/lessons/42746>
+- <https://www.acmicpc.net/problem/2953>
+
+- <https://www.hackerrank.com/challenges/array-left-rotation/problem>
+- <https://www.acmicpc.net/problem/1463>
